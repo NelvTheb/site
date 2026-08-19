@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portail de Documentation Technique</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/style.css">
@@ -9,13 +10,29 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" 
         onload="renderMathInElement(document.body);"></script>
 </head>
 <body>
 
-    <div class="container">
+    <!-- BARRE DE NAVIGATION SUPÉRIEURE (NAVBAR) -->
+    <nav class="top-navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="nav-brand">
+              <img src="images/profile-pic.jpeg" alt="Ma tête" class="logo"> Nelven Thébault <i class="fa-solid fa-code"></i>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#accueil" class="active"><i class="fa-solid fa-house"></i> Accueil</a></li>
+                <li><a href="#projets"><i class="fa-solid fa-diagram-project"></i> Mes projets</a></li>
+                <li><a href="matlab/index.html"><i class="fa-solid fa-calculator"></i> MATLAB</a></li>
+                <li><a href="#guides"><i class="fa-solid fa-book"></i> Guides & Outils</a></li>
+                <li><a href="#arborescence"><i class="fa-solid fa-folder-tree"></i> Arborescence</a></li>
+                <li><a href="#a-propos"><i class="fa-solid fa-user"></i> À propos de moi</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" id="accueil">
 
         <header class="main-header">
             <div class="logo-container">
@@ -37,7 +54,7 @@
         <i class="fa-solid fa-house-laptop"></i>
         <p>Bienvenue sur le hub technique qui regroupe les documents que j'ai rédigé pendant mon stage.
             <br> Cliquez sur les documents ci-dessous pour les ouvrir directement dans un nouvel onglet.
-            <br> Tous ce qui se trouve dans cette page vient du même dossier que le fichier index.
+            <br> Tout ce qui se trouve dans cette page vient du même dossier que le fichier index.
         </p>
       </div>
     </div>
@@ -46,11 +63,11 @@
       <i class="fa-solid fa-arrow-down" style="color: #64748b; font-size: 18px;"></i>
     </p>
 
-    <div class="sub-container">
+    <!-- SECTION MES PROJETS -->
+    <div class="sub-container" id="projets">
       <div class="welcome-box">
         <i class="fa-solid fa-building-lock"></i>
-        <p>Section dédiée au projet sur lequel j'ai travaillé.
-        </p>
+        <p>Section dédiée au projet sur lequel j'ai travaillé.</p>
       </div>
         <h2 class="has-nav">
           <span><i class="fa-solid fa-file-alt"></i> Rapports sur la conception de l'architecture</span>
@@ -63,8 +80,7 @@
       </h2>
       <ul class="doc-list">
           <li>
-              <a href="rapports/DAR01_AMI_Bi-freq_v1_0.pdf" target="_blank" data-tooltip="[FR] Objectif technique
-              ">
+              <a href="rapports/DAR01_AMI_Bi-freq_v1_0.pdf" target="_blank" data-tooltip="[FR] Objectif technique">
                   <i class="fa-solid fa-file-pdf doc-icon icon-pdf"></i> DAR01
                   <span class="badge-group">
                       <span class="badge v-finale">finale</span>
@@ -82,8 +98,7 @@
               </a>
           </li>
           <li>
-            <a href="assets/attente.html?message=Fichier%20pas%20encore%20ajoute" target="_blank" data-tooltip="[FR] Objectif technique : un rapport qui explique et
-                résume tout ce que j'ai fait concernant le projet AMI.">
+            <a href="assets/attente.html?message=Fichier%20pas%20encore%20ajoute" target="_blank" data-tooltip="[FR] Objectif technique : un rapport qui explique et résume tout ce que j'ai fait concernant le projet AMI.">
                 <i class="fa-solid fa-file-pdf doc-icon icon-pdf"></i> Compte rendu du projet
                 <span class="badge-group">
                     <span class="badge v-finale">document le + complet</span>
@@ -121,21 +136,22 @@
         </a>
     </div>
 
-    <div class="sub-container">
+    <!-- SECTION GUIDES & OUTILS -->
+    <div class="sub-container" id="guides">
         <div class="welcome-box">
             <i class="fa-solid fa-atlas"></i>
-            <p>Section dédiée aux guides que j'ai rédigé pour les différents outils.
-            </p>
+            <p>Section dédiée aux guides que j'ai rédigés pour les différents outils.</p>
         </div>
     </div>
 
+    
     <!-- MAJ script python-->
 
-    <div class="tree-container">
+    <div class="tree-container" id="arborescence">
         <div class="welcome-box">
             <i class="fa-solid fa-folder-open"></i>
             <p>Dans cette section se trouve une copie graphique de l'arborescence du projet.
-                <br> Utiles pour naviguer rapidement.
+                <br> Utile pour naviguer rapidement.
             </p>
         </div>
         <h2 class="has-nav">
@@ -148,7 +164,6 @@
         <p style="font-size: 14px; color: #64748b; margin-bottom: 20px;">Cliquez sur les dossiers pour explorer l'arborescence des fichiers du portail.</p>
     
         <ul class="tree-view">
-            
             <span style="display:none;" id="START_KEY"></span>
 <li>
   <details>
@@ -180,48 +195,31 @@
     <div class='folder-content'>
       <ul class='tree-view'>
 <li>
-  <a class='file-item' href='images/.DS_Store' target='_blank'>
-    <i class='fa-solid fa-file icon-generic'></i> .DS_Store
+  <a class='file-item' href='images/profile-pic.jpeg' target='_blank'>
+    <i class='fa-solid fa-file-image icon-tree-image'></i> profile-pic.jpeg
   </a>
 </li>
       </ul>
     </div>
   </details>
 </li>
-<li>
-  <details>
-    <summary><i class='fa-solid fa-folder icon-folder'></i> matlab</summary>
-    <div class='folder-content'>
-      <ul class='tree-view'>
-      </ul>
-    </div>
-  </details>
-</li>
-<li>
-  <a class='file-item' href='.DS_Store' target='_blank'>
-    <i class='fa-solid fa-file icon-generic'></i> .DS_Store
-  </a>
-</li>
-<li>
-  <a class='file-item' href='.gitignore' target='_blank'>
-    <i class='fa-solid fa-file icon-generic'></i> .gitignore
-  </a>
-</li>
-<li>
-  <a class='file-item' href='LICENSE' target='_blank'>
-    <i class='fa-solid fa-file icon-generic'></i> LICENSE
-  </a>
-</li>
-
 <span style="display:none;" id="END_KEY"></span>
-            
         </ul> 
     </div>
-  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-      <span class="lightbox-close">&times;</span>
-      <img id="lightbox-img" src="" alt="Version agrandie">
-  </div>
-  <script src="assets/lightbox.js" defer></script>
+
+    <!-- SECTION À PROPOS DE MOI -->
+    <div class="sub-container" id="a-propos">
+        <div class="welcome-box">
+            <i class="fa-solid fa-user-gear"></i>
+            <p><strong>À propos de moi :</strong> Nelven Thébault — Stagiaire / Ingénieur en traitement du signal & FPGA. Retrouvez ici la présentation synthétique de mon parcours et de mes travaux de stage.</p>
+        </div>
+    </div>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Version agrandie">
+    </div>
+    <script src="assets/lightbox.js" defer></script>
+
 </body>
 </html>
-

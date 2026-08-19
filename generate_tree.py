@@ -8,14 +8,19 @@ import shutil
 TARGET_DIR = "."  # Le dossier à scanner (actuel)
 HTML_FILE = "index.html"  # Le fichier HTML à mettre à jour
 
-# Extensions exclues (On a retiré les formats d'images pour qu'ils soient scannés !)
-EXCLUDED_EXTENSIONS = {'.html', '.py', '.css', '.bak', '.md', '.js', '.DS_Store', '.gitignore'}
+# Noms de fichiers exacts à exclure
+EXCLUDED_FILES = {'.DS_Store', '.gitignore', 'LICENSE'}
+
+# Extensions exclues
+EXCLUDED_EXTENSIONS = {'.html', '.py', '.css', '.bak', '.md', '.js'}
+
+# Dossiers exclus
 EXCLUDED_DIRS = {'.git', '__pycache__'}
 
 # Mappage des icônes de ta charte graphique
 ICON_PDF = "fa-solid fa-file-pdf icon-tree-pdf"
 ICON_MATLAB = "fa-solid fa-file-code icon-tree-matlab"
-ICON_IMAGE = "fa-solid fa-file-image icon-tree-image"  # Nouvelle icône FontAwesome pour images
+ICON_IMAGE = "fa-solid fa-file-image icon-tree-image"
 ICON_GENERIC = "fa-solid fa-file icon-generic"
 ICON_TEX = "fa-solid fa-file-lines icon-tree-tex"
 
@@ -60,17 +65,27 @@ def build_html_tree(path):
             if item in EXCLUDED_DIRS:
                 continue
 
+            # On vérifie si le dossier contient des fichiers valides avant de créer la balise
+            sub_tree = build_html_tree(full_path)
+            if not sub_tree.strip():
+                continue
+
             html += "<li>\n"
             html += "  <details>\n"
             html += f"    <summary><i class='fa-solid fa-folder icon-folder'></i> {item}</summary>\n"
             html += "    <div class='folder-content'>\n"
             html += "      <ul class='tree-view'>\n"
-            html += build_html_tree(full_path)
+            html += sub_tree
             html += "      </ul>\n"
             html += "    </div>\n"
             html += "  </details>\n"
             html += "</li>\n"
         else:
+            # 1. Exclusion par nom exact de fichier (.DS_Store, .gitignore, etc.)
+            if item in EXCLUDED_FILES:
+                continue
+
+            # 2. Exclusion par extension
             ext = os.path.splitext(item)[1].lower()
             if ext in EXCLUDED_EXTENSIONS:
                 continue
@@ -104,19 +119,16 @@ def update_html_file():
         content = f.read()
 
     # 3. Remplacement sécurisé via Regex avec groupes nommés
-    # Recherche les balises span invisibles servant de balises de début et de fin
     pattern = r'(?P<start><span style="display:none;" id="START_KEY"></span>)(.*?)(?P<end><span style="display:none;" id="END_KEY"></span>)'
     
-    # Vérification si les balises existent bien dans le fichier
     if not re.search(pattern, content, flags=re.DOTALL):
-        print("Erreur : Impossible de trouver les balises et END.")
-        # Restauration du backup immédiatement
+        print("Erreur : Impossible de trouver les balises START_KEY et END_KEY.")
         os.replace(backup_file, HTML_FILE)
         return
 
     # Reconstruction propre du fichier
     def replace_content(match):
-        return f"{match.group('start')}\n{generated_tree_html}\n{match.group('end')}"
+        return f"{match.group('start')}\n{generated_tree_html}{match.group('end')}"
 
     new_content = re.sub(pattern, replace_content, content, flags=re.DOTALL)
 
@@ -124,7 +136,7 @@ def update_html_file():
     with open(HTML_FILE, "w", encoding="utf-8") as f:
         f.write(new_content)
 
-    # Si tout s'est bien passé, on nettoie le backup
+    # Nettoyage du backup
     if os.path.exists(backup_file):
         os.remove(backup_file)
 
