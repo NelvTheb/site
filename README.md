@@ -1,2 +1,1 @@
-# Template_Repo
-Template for new repo
+# GIT site

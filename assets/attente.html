@@ -1,0 +1,20 @@
+<html>
+    <body>
+        
+        <div id="zone-texte"></div>
+
+        <script>
+            // Récupère l'argument 'message' dans l'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const monMessage = urlParams.get('message');
+
+            if (monMessage) {
+                // L'affiche dans la boîte HTML qu'on vient de créer
+                document.getElementById('zone-texte').innerText = monMessage;
+            } else {
+                // Optionnel : un message par défaut si l'URL n'a pas d'argument
+                document.getElementById('zone-texte').innerText = "Aucun message reçu.";
+            }
+        </script>
+    </body>
+</html>

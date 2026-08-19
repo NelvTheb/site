@@ -1,0 +1,647 @@
+/* ==========================================
+   CHARTE GRAPHIQUE PARTAGÉE (style.css)
+   ========================================== 
+
+   -----
+   Nelven THEBAULT - 20/06/2026
+   -----
+*/
+
+/* DÉFINITION DES VARIABLES DE COULEURS (Thème Bleu par défaut) */
+:root {
+    --theme-primary: #3b82f6;       /* Bleu vif d'origine */
+    --theme-dark: #1e3a8a;          /* Bleu foncé d'origine */
+    --theme-hover: #2563eb;         /* Bleu hover d'origine */
+    --theme-shadow-rgb: 37, 99, 235; /* Base RVB pour l'ombre de l'animation */
+}
+
+/* CONFIGURATION DE BASE */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 40px;
+    background-color: #f8fafc;
+    color: #334155;
+}
+
+.container {
+    max-width: 950px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* BOUTON RETOUR CENTRALISÉ */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #64748b;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 20px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    transition: all 0.2s ease;
+    width: fit-content;
+}
+
+.btn-back:hover {
+    color: var(--theme-primary); /* S'adapte automatiquement à la couleur de la page ! */
+    background: #e2e8f0;
+    transform: translateX(-2px);
+}
+
+/* EN-TÊTE CONFIGURÉ EN FLEXBOX ANTI-ZOOM & STYLE "WELCOME BOX" */
+.main-header {
+    display: flex;
+    align-items: center; 
+    gap: 24px;          
+    margin-bottom: 30px;
+    padding: 24px;
+    flex-wrap: wrap; 
+    position: relative; 
+}
+
+/* CRÉATION DE LA LIGNE GRISE SÉPARATRICE RACCOURCIE ET CENTRÉE */
+.main-header::after {
+    content: "";
+    position: absolute;
+    bottom: -15px; 
+    left: 5%;      
+    width: 90%;    
+    height: 2px;   
+    background-color: #e2e8f0; 
+}
+
+.logo-container {
+    flex-shrink: 0;     
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    max-height: 60px;   
+    width: auto;        
+    display: block;
+    object-fit: contain;
+}
+
+.header-text {
+    flex: 1;
+    min-width: 250px; 
+}
+
+.header-text h1 {
+    font-size: 26px;
+    color: #0f172a;
+    margin: 0;
+}
+
+.header-text p {
+    font-size: 14px;
+    color: #64748b;
+    margin: 4px 0 0 0;
+}
+
+/* BLOC COORDONNÉES ASSORTI ET SÉCURISÉ POUR LE ZOOM */
+.user-info {
+    margin-left: auto;  
+    text-align: right;  
+    font-size: 13px;
+    line-height: 1.4;
+    color: #64748b;
+    background: #ffffff;
+    padding: 12px 16px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    border-left: 3px solid var(--theme-primary); 
+    flex-shrink: 0;
+}
+
+.user-info .user-name {
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 14px;
+}
+
+/* SECTIONS & CONTENU */
+h2 {
+    font-size: 20px;
+    color: var(--theme-dark); 
+    margin-top: 40px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--theme-primary); 
+    padding-left: 10px;
+}
+
+/* CLASSE DÉRIVÉE POUR LES TITRES AVEC NAVIGATION / PILULE */
+h2.has-nav {
+    display: flex;
+    justify-content: space-between; /* Pousse la pilule tout à droite */
+    align-items: center;            /* Aligne verticalement le titre et la pilule */
+}
+
+/* Optionnel : Empêche l'icône et le texte du titre de se décoller */
+h2.has-nav > span:first-child {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; /* Garde l'icône et le texte soudés */
+}
+
+.doc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.doc-list li {
+    padding: 12px 16px;
+    background: #f1f5f9;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.doc-list li:hover {
+    background: #e2e8f0;
+    animation: docBreath 3s ease-in-out infinite; 
+}
+
+@keyframes docBreath {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--theme-shadow-rgb), 0);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 4px 12px rgba(var(--theme-shadow-rgb), 0.15);
+        transform: scale(1.005); 
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--theme-shadow-rgb), 0);
+        transform: scale(1);
+    }
+}
+
+.doc-list a {
+    color: var(--theme-hover); 
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;       
+    width: 100%;     
+}
+
+.doc-list a:hover {
+    color: #1e293b;
+}
+
+.doc-icon { font-size: 18px; }
+
+.welcome-text {
+    text-align: center;
+    color: #64748b;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* BLOC D'ACCUEIL MODERNE */
+.welcome-box {
+    background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%); 
+    border-left: 5px solid var(--theme-primary); 
+    border-radius: 8px; 
+    padding: 20px 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 16px; 
+}
+
+.welcome-box i {
+    font-size: 24px;
+    color: var(--theme-primary); 
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.welcome-box p {
+    margin: 0;
+    font-size: 15px;
+    color: #475569;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: left; 
+}
+
+/* Déclinaison Orange (Idéal pour la section MATLAB / Simulink) */
+.welcome-box.orange-theme {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); /* Dégradé doux vers l'orange */
+    border-left: 5px solid #e15b13; /* Bordure orange MATLAB active */
+}
+
+/* Déclinaison Violette (Idéal pour la section FPGA / Hardware) */
+.welcome-box.purple-theme {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); /* Dégradé doux vers le violet */
+    border-left: 5px solid #8b5cf6; /* Bordure violette active */
+}
+
+.tree-container, .new-container, .sub-container {
+    max-width: 950px;
+    margin: 40px auto 0 auto; 
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* STYLE DE L'ARBORESCENCE */
+.tree-view {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.tree-view details {
+    margin-custom: 5px;
+    transition: all 0.2s ease;
+}
+
+.tree-view summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: #f8fafc;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #1e293b;
+    list-style: none; 
+    transition: background 0.2s;
+}
+
+.tree-view summary:hover { background: #e2e8f0; }
+.tree-view summary::-webkit-details-marker { display: none; }
+
+.tree-view summary::before {
+    content: "\f105"; 
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #64748b;
+    transition: transform 0.2s ease;
+    width: 14px;
+    text-align: center;
+}
+
+.tree-view details[open] > summary::before { transform: rotate(90deg); }
+
+.tree-view .folder-content {
+    padding-left: 28px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    border-left: 2px dashed #cbd5e1; 
+}
+
+.tree-view .file-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;       
+    color: #475569;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 4px;
+    font-weight: 500;
+    padding: 6px 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tree-view .file-item:hover {
+    background: #f1f5f9;
+    color: var(--theme-hover); 
+}
+
+.icon-folder { color: #eab308; } 
+.icon-tree-pdf { color: #dc2626; } 
+.icon-tree-matlab { color: #ea580c; } 
+/* Couleur spécifique pour les fichiers images */
+.icon-tree-image { color: #0d9488; } /* Vert/Teal */
+
+.badge-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;           
+    margin-left: auto;  
+    margin-right: 4px;  
+    flex-shrink: 0;     
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    user-select: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+}
+
+.badge.v-blue { background-color: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+.badge.v-green { background-color: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+.badge.v-orange { background-color: #ffedd5; color: #9a3412; border: 1px solid #fed7aa; }
+.badge.v-gray { background-color: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+.badge.v-finale { background-color: #f3e8ff; color: #6b21a8; border: 1px solid #e9d5ff; }
+
+/* CONFIGURATION DE L'INFOBULLE */
+.doc-list li, .tree-view .file-item { position: relative; }
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    bottom: 150%;                
+    background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+    color: #475569;              
+    border-left: 4px solid var(--theme-primary); 
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    padding: 10px 14px;
+    border-radius: 6px;          
+    white-space: normal;         
+    width: 280px;                
+    box-shadow: 0 10px 15px -3px rgba(var(--theme-shadow-rgb), 0.1), 0 4px 6px -4px rgba(var(--theme-shadow-rgb), 0.1);
+    opacity: 0;
+    pointer-events: none;        
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 100;                
+}
+
+[data-tooltip]::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: var(--theme-primary) transparent transparent transparent; 
+    bottom: 136%;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 100;
+}
+
+[data-tooltip]:hover::after { opacity: 1; transform: translateX(-50%) scale(1); }
+[data-tooltip]:hover::before { opacity: 1; }
+
+.clickable-box {
+    text-decoration: none; 
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.clickable-box:hover {
+    transform: translateX(6px); 
+    background: linear-gradient(135deg, #eff6ff 0%, #e8fbf0 100%); 
+    box-shadow: 0 6px 12px rgba(var(--theme-shadow-rgb), 0.08); 
+}
+
+.clickable-box .box-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1; 
+}
+
+.clickable-box .box-content h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #1e3a8a; 
+    font-weight: 600;
+}
+
+.clickable-box .box-content p {
+    margin: 0;
+    font-size: 13px;
+    color: #64748b; 
+    font-weight: 400;
+}
+
+.clickable-box i.icon-matlab { color: #ea580c; flex-shrink: 0; }
+.welcome-box.border-orange { border-left: 5px solid #ea580c; }
+.text-orange { color: #9a3412 !important; }
+
+/* BLOC EXTENSIBLE AU SURVOL */
+.expandable-item {
+    display: flex;
+    flex-direction: column; 
+    transition: all 0.3s ease-in-out;
+}
+
+.expandable-item .source-preview {
+    max-height: 0;          
+    overflow: hidden;       
+    opacity: 0;
+    transition: max-height 0.35s ease-in-out, opacity 0.25s ease-in-out, margin-top 0.25s ease-in-out;
+    margin-top: 0;
+}
+
+.expandable-item .source-preview pre {
+    margin: 0;
+    padding: 12px;
+    background: #ffffff;    
+    border-left: 3px solid var(--theme-primary); 
+    border-radius: 4px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.5;
+    overflow-x: auto;       
+}
+
+/* L'état survolé/déplié du conteneur global */
+.expandable-item:hover .source-preview,
+.expandable-item.active .source-preview {
+    opacity: 1;
+    margin-top: 12px;
+    
+    /* On donne une marge de manœuvre immense pour que le code + le schéma rentrent */
+    max-height: 1500px; 
+}
+
+.header-navigation {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.btn-back { margin-bottom: 0 !important; }
+
+.location-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    padding: 6px 14px;
+    border-radius: 20px; 
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b; 
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    user-select: none;
+    cursor: default;
+    position: relative; 
+}
+
+.location-pill:hover { border-color: #cbd5e1; background: #f8fafc; }
+.location-pill i.icon-folder { color: #eab308; }
+.path-separator { color: #cbd5e1; font-weight: 400; margin: 0 2px; }
+.path-current { color: var(--theme-dark); font-weight: 700; } 
+
+.welcome-box.border-purple { border-left: 5px solid #a855f7; }
+.icon-fpga { color: #a855f7 !important; }
+.text-purple { color: #6b21a8 !important; }
+h2.text-purple { border-left: 4px solid #a855f7; }
+
+html { scrollbar-gutter: stable; }
+
+/* ==========================================================================
+   BLOC RÉSUMÉ / COMMENTAIRE DE SECTION (VERSION CENTRÉE ET AFFINÉE)
+   ========================================================================== */
+   .section-summary {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #475569; /* Gris ardoise doux pour le texte */
+    background-color: #f8fafc; /* Bleu/Gris ultra-léger et lumineux */
+    
+    /* Ajustement de la largeur et centrage automatique */
+    width: 90%; /* Occupe 90% de la largeur du conteneur parent */
+    max-width: 800px; /* Évite que le bloc devienne trop large sur très grand écran */
+    
+    /* Centrage horizontal (auto à gauche et à droite) */
+    /* -15px en haut pour coller à la welcome-box, 30px en bas pour espacer de la suite */
+    margin: -15px auto 30px auto; 
+    
+    padding: 14px 20px;
+    border-radius: 8px; /* Arrondi complet et doux */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.01), 0 2px 4px -1px rgba(0, 0, 0, 0.005); /* Ombre ultra-discrète */
+    
+    border: 1px solid #f1f5f9; /* Bordure presque invisible pour détacher du fond blanc */
+}
+
+/* Reste identique pour les mises en valeur */
+.section-summary strong {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+/* Styles pour les listes à puces à l'intérieur du résumé */
+.section-summary ul {
+    margin: 8px 0 0 0;      /* Espace au-dessus de la liste */
+    padding-left: 20px;     /* Décale la liste vers la droite */
+    list-style-type: disc;  /* Force de jolies puces rondes */
+}
+
+.section-summary li {
+    margin-bottom: 4px;     /* Espace léger entre chaque ligne de puce */
+    color: #475569;         /* Même couleur grise douce que le reste du résumé */
+}
+
+/* Supprime la marge du dernier élément pour garder le bloc bien proportionné */
+.section-summary li:last-child {
+    margin-bottom: 0;
+}
+
+/* Couleur historique/communautaire de TeX (Cyan foncé / Sarcelle) */
+.icon-tree-tex { color: #008080; }
+
+/* ==========================================================================
+   SYSTÈME LIGHTBOX (ZOOM IMAGE STYLE GOOGLE DRIVE)
+   ========================================================================== */
+   .lightbox {
+    display: none; /* Caché par défaut */
+    position: fixed;
+    z-index: 9999; /* Reste au-dessus de tout le reste de la page */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.9); /* Fond sombre ardoise très dense */
+    backdrop-filter: blur(4px); /* Léger flou de l'arrière-plan pour le style */
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+}
+
+/* L'image agrandie */
+/* Style par défaut pour l'image agrandie (PNG, JPG) */
+.lightbox img {
+    max-width: 90%;
+    max-height: 85%;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    background-color: transparent; /* Transparent pour les PNG */
+    
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+/* ÉTAT SPÉCIFIQUE : Si l'image ouverte est un schéma SVG */
+.lightbox img.is-svg {
+    background-color: #ffffff; /* Fond blanc pour faire ressortir les lignes noires */
+    padding: 20px;            /* Espace interne pour respirer */
+    border-radius: 8px;
+    width: 80%;               /* Force le SVG à occuper 80% de la largeur de l'écran */
+    max-width: 1000px;        /* Limite maximale pour ne pas pixelliser les textes du schéma */
+    height: auto;             /* Conserve les proportions d'origine */
+}
+
+/* Quand la lightbox est active */
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox.active img {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Bouton Fermer (la croix en haut à droite) */
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #f1f5f9;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.lightbox-close:hover {
+    color: #94a3b8;
+}
+
